@@ -8,25 +8,28 @@ use \RouterOS\Client;
 use \RouterOS\Query;
 use \RouterOS\Config;
 use \RouterOS\Exceptions\ConnectException;
+use App\Models\mikrotik;
 
 class MikrotikController extends Controller
 {
     public function index()
     {
 
+        $mikrotik = mikrotik::first();
+
         try {
             // Initiate client with config object
             $client = new Client([
                 'timeout' => 1,
-                'host'    => '192.168.56.101',
-                'user'    => 'admin',
-                'pass'    => ''
+                'host'    => $mikrotik->ip,
+                'user'    => $mikrotik->username,
+                'pass'    => $mikrotik->password
             ]);
         } catch (ConnectException $e) {
             // echo $e->getMessage() . PHP_EOL;
             $akses["body"] = $e->getMessage();
             $akses["status"] = "gagal";
-            return view('admin.setting',compact('akses'));
+            return view('admin.setting',compact('akses','mikrotik'));
             die();
         }
 
@@ -40,7 +43,25 @@ class MikrotikController extends Controller
         $akses["status"] = "sukses";
         $akses["body"] = "Conected";
 
-        return view('admin.setting',compact('akses'));
+        return view('admin.setting',compact('akses','mikrotik'));
         
+    }
+
+    public function simpan(Request $request)
+    {
+        $request->validate([
+            "username"=>"required",
+            "ip"=>"required",
+        ]);
+
+        $mikrotik = [
+            "username" => $request->username,
+            "ip" => $request->ip,
+            "password" => $request->password == null ? '': $request->password,
+        ]; 
+
+
+        mikrotik::first()->update($mikrotik);
+        return redirect()->back()->with('sukses','konfigurasiberhasil disimpan');
     }
 }

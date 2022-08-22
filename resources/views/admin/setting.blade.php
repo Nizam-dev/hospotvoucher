@@ -18,20 +18,21 @@
             <div class="card-body">
 
 
-                <form action="" method="post">
+                <form action="{{url('setting')}}" method="post">
+                    @csrf
                     <div class="form-group">
                         <label for="">IP</label>
-                        <input type="text" class="form-control" value="">
+                        <input type="text" name="ip" class="form-control" value="{{$mikrotik->ip}}">
                     </div>
 
                     <div class="form-group">
                         <label for="">User</label>
-                        <input type="text" class="form-control" value="">
+                        <input type="text" name="username" class="form-control" value="{{$mikrotik->username}}">
                     </div>
 
                     <div class="form-group">
                         <label for="">Password</label>
-                        <input type="text" class="form-control" value="">
+                        <input type="text" name="password" class="form-control" value="{{$mikrotik->password}}">
                     </div>
 
                     <button class="btn btn-primary float-right">Simpan</button>
@@ -52,3 +53,4 @@
 
 
 @endsection
+

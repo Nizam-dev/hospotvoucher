@@ -6,3 +6,14 @@
 
 <!-- Custom styles for this template-->
 <link href="{{asset('public/template/css/sb-admin-2.min.css')}}" rel="stylesheet">
+<link href="{{asset('public/template/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+
+
+<style>
+    .bg-gradient-primary {
+    background-image: linear-gradient(180deg,#4e73df 10%,#181c26 100%);
+    background-size: cover;
+}
+</style>
+
+@yield('css')

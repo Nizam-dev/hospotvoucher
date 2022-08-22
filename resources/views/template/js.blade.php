@@ -9,8 +9,34 @@
 <script src="{{asset('public/template/js/sb-admin-2.min.js')}}"></script>
 
 <!-- Page level plugins -->
-<script src="{{asset('public/template/vendor/chart.js/Chart.min.js')}}"></script>
+<!-- <script src="{{asset('public/template/vendor/chart.js/Chart.min.js')}}"></script> -->
 
 <!-- Page level custom scripts -->
-<script src="{{asset('public/template/js/demo/chart-area-demo.js')}}"></script>
-<script src="{{asset('public/template/js/demo/chart-pie-demo.js')}}"></script>
+<!-- <script src="{{asset('public/template/js/demo/chart-area-demo.js')}}"></script>
+<script src="{{asset('public/template/js/demo/chart-pie-demo.js')}}"></script> -->
+
+<script src="{{asset('public/template/vendor/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('public/template/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
+
+<script src="{{asset('public/template/js/sweetalert2.min.js')}}"></script>
+
+
+
+<script>
+    @if(Session::has('sukses'))
+    Swal.fire({
+        title: "{{Session::get('sukses')}}",
+        type: 'success',
+        icon: 'success',
+        confirmButtonText: 'Ok'
+    });
+    @elseif(Session::has('gagal'))
+    Swal.fire({
+        title: "{{Session::get('gagal')}}",
+        type: 'error',
+        icon: 'error',
+        confirmButtonText: 'Ok'
+    });
+    @endif
+</script>
+@yield('js')
