@@ -19,6 +19,7 @@
 <script src="{{asset('public/template/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
 
 <script src="{{asset('public/template/js/sweetalert2.min.js')}}"></script>
+<script src="{{asset('public/template/js/axios.min.js')}}"></script>
 
 
 

@@ -32,7 +32,7 @@ class LoginController extends Controller
             $ip_address = request()->ip(); 
             User::find(auth()->user()->id)
             ->update(['ip_address'=>$ip_address]);
-            return redirect('dashboard');
+            return redirect('/');
         }
 
         return redirect()->back()->with("gagal","Password tidak valid");

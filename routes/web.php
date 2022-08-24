@@ -54,6 +54,8 @@ Route::resource('profile',App\Http\Controllers\ProfileController::class);
 // Pengguna
 Route::get('pengguna/beranda',[App\Http\Controllers\Pengguna\BerandaController::class,'index']);
 Route::get('pengguna/history',[App\Http\Controllers\Pengguna\HistoryController::class,'index']);
+Route::post('pengguna/aksesvoucher',[App\Http\Controllers\Pengguna\AksesVoucherController::class,'akesvoucher']);
+Route::get('pengguna/cekinternet',[App\Http\Controllers\Pengguna\AksesVoucherController::class,'cekinternet']);
 
 
 
