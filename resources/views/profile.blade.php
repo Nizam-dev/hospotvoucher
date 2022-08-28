@@ -20,17 +20,17 @@
 
                     <div class="form-group">
                         <label for="">Nama</label>
-                        <input type="text" class="form-control" name="name" value="">
+                        <input type="text" class="form-control" name="name" value="{{auth()->user()->name}}">
                     </div>
 
                     <div class="form-group">
                         <label for="">Email</label>
-                        <input type="email" class="form-control" name="email" value="">
+                        <input type="email" class="form-control" name="email" value="{{auth()->user()->email}}">
                     </div>
 
                     <div class="form-group">
                         <label for="">No Hp</label>
-                        <input type="text" class="form-control" name="no_hp" value="">
+                        <input type="text" class="form-control" name="no_hp" value="{{auth()->user()->no_hp}}">
                     </div>
 
                     <button class="btn btn-primary float-right">Simpan</button>

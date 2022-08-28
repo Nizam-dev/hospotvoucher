@@ -33,6 +33,11 @@
                                 <button class="btn btn-sm btn-warning" onclick="edit_profile({{$profile}})">
                                     <i class="fa fa-edit"></i>
                                 </button>
+
+                                <button class="btn btn-sm btn-danger" onclick="hapus_profile({{$profile}})">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+
                             </td>
                         </tr>
                     @endforeach
@@ -99,6 +104,26 @@
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
             </form>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" id="hapus_profile">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Hapus Profile Voucher</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <a class="hps btn btn-danger">Hapus</a>
+                </div>
 
         </div>
     </div>

@@ -17,10 +17,19 @@
                         <th>Tanggal</th>
                         <th>Voucher</th>
                         <th>Durasi</th>
+                        <th>Harga</th>
                 </thead>
 
                 <tbody>
-
+                    @foreach($historys as $history)
+                        <tr>
+                        <td>{{$loop->iteration}}</td>
+                        <td>{{$history->created_at}}</td>
+                        <td>{{$history->kode_voucher}}</td>
+                        <td>{{$history->durasi}} Menit</td>
+                        <td>{{$history->harga}}</td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

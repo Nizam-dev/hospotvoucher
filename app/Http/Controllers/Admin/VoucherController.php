@@ -52,9 +52,6 @@ class VoucherController extends Controller
             // Initiate client with config object
             $client = new Client([
                 'timeout' => 1,
-                // 'host'    => $mikrotik->ip,
-                // 'user'    => $mikrotik->username,
-                // 'pass'    => $mikrotik->password
                 'host'    => '192.168.56.101',
                 'user'    => 'admin',
                 'pass'    => ''
@@ -85,9 +82,10 @@ class VoucherController extends Controller
 
     }
 
-    public function print()
+    public function print(Request $request)
     {
-        return view('admin.print_voucher');
+        $vouchers = voucher::whereIn('id',$request->vc)->get();
+        return view('admin.print_voucher',compact('vouchers'));
     }
 
 }

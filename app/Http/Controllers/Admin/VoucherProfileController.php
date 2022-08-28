@@ -19,4 +19,10 @@ class VoucherProfileController extends Controller
         profile_voucher::find($id)->update($request->all());
         return redirect()->back()->with('sukses-profile','Profile Berhasil Di Ubah');
     }
+
+    public function hapus($id)
+    {
+        profile_voucher::find($id)->delete();
+        return redirect()->back()->with('sukses-profile','Profile Berhasil Di Hapus');
+    }
 }

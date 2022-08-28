@@ -12,23 +12,23 @@
     <div class="container py-2">
         <div class="row">
 
-            @for($i=0;$i<10;$i++)
+            @foreach($vouchers as $voucher)
 
             <div class="col-md-3 mb-2">
                 <div class="card py-2 px-2">
                     <div class="row">
                         <div class="col-4">
-                        {!! QrCode::size(50)->generate('KF44521114'); !!}
+                        {!! QrCode::size(50)->generate($voucher->kode); !!}
                         </div>
                         <div class="col-8">
-                            <p>KF44521114</p>
-                            <span>Paket 2 Jam</span>
+                            <p>{{$voucher->kode}}</p>
+                            <span>{{$voucher->nama_voucher}}</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            @endfor
+            @endforeach
 
         </div>
     </div>

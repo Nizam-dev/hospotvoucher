@@ -16,11 +16,22 @@
                         <th>No</th>
                         <th>Tanggal</th>
                         <th>Voucher</th>
-                        <th>Jumlah</th>
+                        <th>Nama Pengguna</th>
+                        <th>Durasi Voucher</th>
+                        <th>Harga</th>
                 </thead>
 
                 <tbody>
-
+                    @foreach($rekaps as $rekap)
+                        <tr>
+                        <td>{{$loop->iteration}}</td>
+                        <td>{{$rekap->created_at}}</td>
+                        <td>{{$rekap->kode_voucher}}</td>
+                        <td>{{$rekap->name}}</td>
+                        <td>{{$rekap->durasi}} Menit</td>
+                        <td>{{$rekap->harga}}</td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

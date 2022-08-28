@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class profile_voucher extends Model
 {
-    use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = [
         'nama_voucher',
@@ -15,4 +16,6 @@ class profile_voucher extends Model
         'durasi',
     ];
  
+    protected $dates = ['deleted_at'];
+
 }

@@ -110,6 +110,44 @@
         $("#md_profile").modal("show")
     }
 
+    function hapus_profile(profile) {
+        $("#hapus_profile .hps").attr("href",`{{url('profilevoucher/hapus')}}/${profile.id}`)
+        $("#hapus_profile").modal("show")
+    }
+
+    function selectAll() {
+        $("[name='ceklis']").prop('checked', true)
+        cekPrint()
+    }
+
+    function deselectAll() {
+        $("[name='ceklis']").prop('checked', false)
+        cekPrint()
+    }
+
+    $("[name='ceklis']").on('change',()=>{
+        cekPrint()
+    })
+
+    function cekPrint() {
+        let cn = $("[name='ceklis']:checked").length
+        if(cn < 1){
+            $("#btn_print_voucher").prop('disabled',true)
+        }else{
+            $("#btn_print_voucher").prop('disabled',false)
+        }
+    }
+
+    $("#btn_print_voucher").on('click',()=>{
+        $(".fm_print .bd_form").empty()
+        $("[name='ceklis']:checked").each((s, el) => {
+            $(".fm_print .bd_form").append(`
+                <input value="${$(el).val()}" name="vc[]">
+            `)
+        })
+        $(".fm_print form").submit()
+    })
+    
 </script>
 
 @endsection
