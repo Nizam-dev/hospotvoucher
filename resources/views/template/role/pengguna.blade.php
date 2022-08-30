@@ -11,8 +11,8 @@
         <span>History Voucher</span></a>
 </li>
 
-<li class="nav-item ">
-    <a class="nav-link" href="{{url('/')}}">
+<li class="nav-item {{request()->is('profile')?'active':''}}">
+    <a class="nav-link" href="{{url('/profile')}}">
         <i class="fas fa-user fa-user-alt"></i>
         <span>Profile</span></a>
 </li>

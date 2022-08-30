@@ -7,6 +7,7 @@ use Auth;
 use App\Models\voucher;
 use App\Models\User;
 use App\Models\history_voucher;
+use App\Models\profile_voucher;
 use Carbon\Carbon;
 
 class DashboardController extends Controller
@@ -32,6 +33,11 @@ class DashboardController extends Controller
             ];
             return view('admin.dashboard',compact('data'));
         }else{
+            $no_admin = User::where('role','admin')->first()->no_hp;
+
+            $list_voucher = profile_voucher::all();
+
+            // Cek Voucher digunakan
             $hv = history_voucher::where('history_vouchers.user_id',auth()->user()->id)
             ->join('vouchers','vouchers.id','history_vouchers.voucher_id')
             ->select("history_vouchers.*","vouchers.durasi")
@@ -49,7 +55,7 @@ class DashboardController extends Controller
                 }
             }
 
-            return view('pengguna.beranda',compact("status"));
+            return view('pengguna.beranda',compact("status","no_admin","list_voucher"));
         }
     }
 }

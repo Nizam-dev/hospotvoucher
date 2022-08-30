@@ -41,31 +41,82 @@
 @section('content')
 
 
-<div class="col-lg-6 mb-4">
+<div class="row">
 
-    <!-- Illustrations -->
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary text-center">{{$status}}</h6>
-        </div>
-        <div class="card-body">
-            
-            @if($status == "Anda Belum Memiliki Akses Internet")
-                <h6 class="text-center">Masukkan Kode Voucher Disini</h6>
-                <input type="text" name="voucher" class="mx-auto d-block mb-3">
-                
-                <div class="lds-ring mx-auto d-none"><div></div><div></div><div></div><div></div></div>
+  <div class="col-md-6 mb-4">
 
-                <button class="btn btn-sm btn-primary mx-auto d-block" id="submit_voucher">Simpan</button>
-            @else
+      <!-- Illustrations -->
+      <div class="card shadow mb-4">
+          <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary text-center">{{$status}}</h6>
+          </div>
+          <div class="card-body">
+              
+              @if($status == "Anda Belum Memiliki Akses Internet")
+                  <h6 class="text-center">Masukkan Kode Voucher Disini</h6>
+                  <input type="text" name="voucher" class="mx-auto d-block mb-3">
+                  
+                  <div class="lds-ring mx-auto d-none"><div></div><div></div><div></div><div></div></div>
 
-                
+                  <button class="btn btn-sm btn-primary mx-auto d-block" id="submit_voucher">Submit</button>
+              @else
 
-            @endif
+                  
+
+              @endif
 
 
-        </div>
+          </div>
+      </div>
+
+  </div>
+
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <h3 class="small font-weight-bold text-center">Selamat Datang Di Layanan INternet Wifi Saya<h3>
+        
+        <h4 class="small font-weight-bold  text-center">Seilahkan Hubungi Admin Untuk Melakukan Pemesanan {{$no_admin}}</h4>
+
+        <h6 class="text-xs font-weight-bold mt-6"> Melayani Voucher Wifi</h6>
+
+
+          <div class="row">
+
+        @foreach($list_voucher as $voucher)
+
+
+            <div class="col-md-6 mb-4 vcr">
+                <div class="card border-left-success shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                    {{$voucher->nama_voucher}}
+                                </div>
+                                <span class="badge badge-warning">
+                                    {{$voucher->durasi}} Menit
+                                </span>
+
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">Rp. {{$voucher->harga}}</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fa fa-qrcode fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+          @endforeach
+
+
+          </div>
+
+
+      </div>
     </div>
+  </div>
 
 </div>
 
