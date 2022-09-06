@@ -12,5 +12,6 @@ class history_voucher extends Model
         'kode_voucher',
         'user_id',
         'voucher_id',
+        'sisa_durasi'
     ];
 }

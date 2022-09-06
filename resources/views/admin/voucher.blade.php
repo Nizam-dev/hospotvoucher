@@ -27,6 +27,12 @@
             </button>
         </li>
         <li class="nav-item" role="presentation">
+            <button class="nav-link" id="voucherdigunakan-tab" data-toggle="tab" data-target="#voucherdigunakan" type="button" role="tab"
+                aria-controls="voucherdigunakan" aria-selected="false">
+                <i class="fa fa-plus-square" aria-hidden="true"></i> Voucher Terpakai
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
             <button class="nav-link" id="profile-tab" data-toggle="tab" data-target="#profile" type="button" role="tab"
                 aria-controls="profile" aria-selected="false">
                 <i class="fa fa-plus-square" aria-hidden="true"></i> Buat
@@ -46,6 +52,11 @@
 
             @include('admin.voucher.list')
             
+        </div>
+        <div class="tab-pane fade" id="voucherdigunakan" role="tabpanel" aria-labelledby="profile-tab">
+            
+            @include('admin.voucher.terpakai')
+
         </div>
         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
             
@@ -79,6 +90,7 @@
 
     $("#dataTable").DataTable()
     $("#dataTable2").DataTable()
+    $("#dataTable9").DataTable()
 
     function pilih_voucher(el){
         let vc = $(el).find("input")

@@ -17,8 +17,8 @@
                         <th>Tanggal</th>
                         <th>Voucher</th>
                         <th>Nama Pengguna</th>
-                        <th>Durasi Voucher</th>
                         <th>Harga</th>
+                        <th>Durasi Voucher</th>
                 </thead>
 
                 <tbody>
@@ -28,8 +28,8 @@
                         <td>{{$rekap->created_at}}</td>
                         <td>{{$rekap->kode_voucher}}</td>
                         <td>{{$rekap->name}}</td>
-                        <td>{{$rekap->durasi}} Menit</td>
                         <td>{{$rekap->harga}}</td>
+                        <td>{{$rekap->durasi}} Menit</td>
                         </tr>
                     @endforeach
                 </tbody>

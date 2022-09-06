@@ -24,7 +24,8 @@ class User extends Authenticatable
         'no_hp',
         'last_seen',
         'role',
-        'ip_address'
+        'ip_address',
+        'voucher_digunakan'
     ];
 
     /**

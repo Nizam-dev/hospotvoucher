@@ -15,6 +15,7 @@
                         <th>Kode Voucher</th>
                         <th>Voucher</th>
                         <th>Durasi</th>
+                        <th>Status</th>
                         <th>Harga</th>
                         <th class="no-sort">
                             <div class="dropdown no-arrow">
@@ -40,6 +41,7 @@
                         <td>{{$voucher->kode}}</td>
                         <td>{{$voucher->nama_voucher}}</td>
                         <td>{{$voucher->durasi}}</td>
+                        <td>{{$voucher->status}}</td>
                         <td>{{$voucher->harga}}</td>
                         <td>
                             <input type="checkbox" value="{{$voucher->id}}" name="ceklis">

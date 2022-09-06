@@ -11,6 +11,7 @@ use \RouterOS\Exceptions\ConnectException;
 use App\Models\mikrotik;
 use App\Models\profile_voucher;
 use App\Models\voucher;
+use App\Models\history_voucher;
 use PDF;
 
 class VoucherController extends Controller
@@ -21,8 +22,11 @@ class VoucherController extends Controller
         $profile_vouchers = profile_voucher::all();
         $vouchers = voucher::where('status','Belum Digunakan')
                     ->get();
-
-        return view('admin.voucher',compact('vouchers','profile_vouchers','vouchers'));
+        $voucher_terpakai = history_voucher::join('users','users.id','history_vouchers.user_id')
+        ->join('vouchers','vouchers.id','history_vouchers.voucher_id')
+        ->select('history_vouchers.*','users.name','vouchers.nama_voucher','vouchers.status','vouchers.durasi','vouchers.harga')
+        ->get();
+        return view('admin.voucher',compact('vouchers','profile_vouchers','vouchers','voucher_terpakai'));
     }
 
 

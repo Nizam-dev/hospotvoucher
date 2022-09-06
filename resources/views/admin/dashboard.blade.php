@@ -84,6 +84,24 @@
         </div>
     </div>
 
+    <div class="row">
+    <div class="col-md-12">
+        
+        <!-- Bar Chart -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Penjualan Voucher</h6>
+            </div>
+            <div class="card-body">
+                <div class="chart-bar" style="height: 100%;">
+                    <canvas id="grafikpenjualan"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
 
 </div>
 
@@ -91,5 +109,72 @@
 
 @section('js')
 
+<script src="{{asset('public/template/vendor/chart.js/Chart.min.js')}}"></script>
+
+<script>
+
+var data_penjualan = @json($grafik_penjualan);
+
+
+let labels = [];
+let datapenjualan = [];
+
+data_penjualan.forEach((d)=>{
+    labels.push(d.bulan)
+    datapenjualan.push(d.total)
+})
+
+const data = {
+  labels: labels,
+  datasets: [{
+    label: 'Penjualan Voucher',
+    data: datapenjualan,
+    backgroundColor: '#4e73df',
+    borderWidth: 1
+  }]
+};
+
+function addCommas(nStr) {
+    nStr += '';
+    x = nStr.split('.');
+    x1 = x[0];
+    x2 = x.length > 1 ? '.' + x[1] : '';
+    let rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + ',' + '$2');
+    }
+    return x1 + x2;
+}
+
+const config = {
+  type: 'bar',
+  data: data,
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true
+      },
+      yAxes: [{
+            gridLines: {
+                color: "#ECECEC",
+            },
+            ticks: {
+                fontSize: 10,
+                beginAtZero: true,
+                callback: function (value, index, values) {
+                    return 'Rp. '+addCommas(value); //! panggil function addComas tadi disini
+                }
+            }
+        }]
+    }
+  },
+};
+
+
+
+
+var lineChart = new Chart($("#grafikpenjualan"), config);
+
+</script>
 
 @endsection

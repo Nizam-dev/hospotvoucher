@@ -54,6 +54,8 @@ Route::get('pengguna/beranda',[App\Http\Controllers\Pengguna\BerandaController::
 Route::get('pengguna/history',[App\Http\Controllers\Pengguna\HistoryController::class,'index']);
 Route::post('pengguna/aksesvoucher',[App\Http\Controllers\Pengguna\AksesVoucherController::class,'akesvoucher']);
 Route::get('pengguna/cekinternet',[App\Http\Controllers\Pengguna\AksesVoucherController::class,'cekinternet']);
+Route::get('pengguna/cekvoucher',[App\Http\Controllers\Pengguna\CekVoucherController::class,'cekvoucher']);
+Route::get('pengguna/disconnect',[App\Http\Controllers\Pengguna\CekVoucherController::class,'putuskan_voucher']);
 
 
 

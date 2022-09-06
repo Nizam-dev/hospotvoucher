@@ -61,7 +61,12 @@
                   <button class="btn btn-sm btn-primary mx-auto d-block" id="submit_voucher">Submit</button>
               @else
 
-                  
+              <h6 class="text-center">Siswa Waktu</h6>
+              <div class="text-center" id="countdown"></div>    
+              
+              <button onclick="logout()" class="btn btn-danger mx-auto d-block mt-2">
+                <i class="fa fa-sign-out-alt" aria-hidden="true"></i> Disconnect
+              </button>
 
               @endif
 
@@ -126,6 +131,13 @@
 @section('js')
 
 <script>
+
+  $(document).ready(()=>{
+    @if($status != "Anda Belum Memiliki Akses Internet")
+    cekDurasi()
+    @endif
+  })
+
     $("#submit_voucher").on("click",()=>{
         let kode_voucher = $("[name='voucher']").val()
         $("#submit_voucher").prop('disabled',true)
@@ -152,12 +164,61 @@
                 })
 
             $("#submit_voucher").prop('disabled',false)
-            $(".lds-ring").removeClass('d-none')
+            $(".lds-ring").addClass('d-none')
 
             }
         })
     })
 
+
+function cekDurasi(){
+  axios.get("{{url('pengguna/cekvoucher')}}")
+  .then(res=>{
+    // console.log(res.data.wa)
+    cekHabis(res.data.waktu_habis)
+
+  })
+}
+
+function cekHabis(w_h){
+    var end = new Date(w_h);
+
+    var _second = 1000;
+    var _minute = _second * 60;
+    var _hour = _minute * 60;
+    var _day = _hour * 24;
+    var timer;
+
+    function showRemaining() {
+        var now = new Date();
+        var distance = end - now;
+        if (distance < 0) {
+
+            clearInterval(timer);
+            document.getElementById('countdown').innerHTML = 'EXPIRED!';
+            logout()
+
+            return;
+        }
+        var days = Math.floor(distance / _day);
+        var hours = Math.floor((distance % _day) / _hour);
+        var minutes = Math.floor((distance % _hour) / _minute);
+        var seconds = Math.floor((distance % _minute) / _second);
+
+        document.getElementById('countdown').innerHTML = days + 'Hri ';
+        document.getElementById('countdown').innerHTML += hours + 'Jam ';
+        document.getElementById('countdown').innerHTML += minutes + 'Menit ';
+        document.getElementById('countdown').innerHTML += seconds + 'Detik';
+    }
+
+    timer = setInterval(showRemaining, 1000);
+}
+
+function logout(){
+  axios.get("{{url('pengguna/disconnect')}}").then(res=>{
+    location.reload();
+  })
+}
 
 </script>
 
